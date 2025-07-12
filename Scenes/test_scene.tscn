@@ -1,0 +1,583 @@
+[gd_scene load_steps=46 format=3 uid="uid://dmvloq3eculg2"]
+
+[ext_resource type="Script" path="res://addons/Basic FPS Player/Src/basic_player_startup.gd" id="1_n4wlx"]
+[ext_resource type="PackedScene" uid="uid://ddgf4qim3udwk" path="res://addons/InteractionEngine2.0/Buttons/Button Timed/ButtonTimed.tscn" id="3_2eylr"]
+[ext_resource type="Texture2D" uid="uid://b2weev8swrjkh" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_black_512x512.png" id="3_8skij"]
+[ext_resource type="PackedScene" uid="uid://kmyakts4l64t" path="res://addons/Basic FPS Player/Src/basic_player_head.tscn" id="3_jgp0e"]
+[ext_resource type="Texture2D" uid="uid://bvbrvudtrcrkq" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_blue_512x512.png" id="4_h4snw"]
+[ext_resource type="Texture2D" uid="uid://57b6nweqchlt" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_blue_512x512.png" id="5_bmcpb"]
+[ext_resource type="PackedScene" uid="uid://cetww4hdt1sch" path="res://addons/InteractionEngine2.0/TouchInteraction/TouchInteraction.tscn" id="6_yohpv"]
+[ext_resource type="Texture2D" uid="uid://diwp4e1u2kul7" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_cyan_512x512.png" id="7_pkvhr"]
+[ext_resource type="PackedScene" uid="uid://0brfkvakly6e" path="res://addons/InteractionEngine2.0/Buttons/Button Toggle/ButtonToggleInteract.tscn" id="8_i08dp"]
+[ext_resource type="Texture2D" uid="uid://drdxgmj72jfa4" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_white_512x512.png" id="9_rx0wk"]
+[ext_resource type="Texture2D" uid="uid://bl0uf6itog2gk" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_black_512x512.png" id="10_c32j3"]
+[ext_resource type="PackedScene" uid="uid://cdeiv1h8dfp1c" path="res://ProtoTypeingAssets/3Dmodels/WallCandle.glb" id="12_hyes1"]
+[ext_resource type="Texture2D" uid="uid://wsk7y8at6q56" path="res://ProtoTypeingAssets/LensFlairTextures/LensFlair.png" id="13_qfv5v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0n8u0"]
+size = Vector3(0.2, 0.2, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u307w"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sexsd"]
+
+[sub_resource type="Sky" id="Sky_elxab"]
+sky_material = SubResource("ProceduralSkyMaterial_sexsd")
+
+[sub_resource type="Environment" id="Environment_pu474"]
+background_mode = 2
+sky = SubResource("Sky_elxab")
+ambient_light_source = 3
+sdfgi_use_occlusion = true
+adjustment_brightness = 1.28
+adjustment_contrast = 1.42
+adjustment_saturation = 1.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8vjqw"]
+albedo_texture = ExtResource("3_8skij")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6itj7"]
+albedo_texture = ExtResource("4_h4snw")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j88fx"]
+albedo_texture = ExtResource("5_bmcpb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8fuy"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.294118)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_keeo7"]
+size = Vector3(8, 3, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ho1kl"]
+albedo_texture = ExtResource("7_pkvhr")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dbj5l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uhl2q"]
+albedo_texture = ExtResource("9_rx0wk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27k1n"]
+albedo_texture = ExtResource("10_c32j3")
+
+[sub_resource type="Animation" id="Animation_002uv"]
+resource_name = "Close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(3.65, 5.1, -3.5), Vector3(3.65, 2.1, -3.5)]
+}
+
+[sub_resource type="Animation" id="Animation_narkm"]
+resource_name = "Open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(3.65, 2.1, -3.5), Vector3(3.65, 5.1, -3.5)]
+}
+
+[sub_resource type="Animation" id="Animation_um4x5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.65, 2.1, -3.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p0txa"]
+_data = {
+"Close": SubResource("Animation_002uv"),
+"Open": SubResource("Animation_narkm"),
+"RESET": SubResource("Animation_um4x5")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_47fqx"]
+
+[sub_resource type="Animation" id="Animation_hwn1m"]
+resource_name = "Bounce"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(5, 3, 5), Vector3(5, 1, 5), Vector3(5, 3, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGBox3D2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(5, 1, 7), Vector3(5, 3, 7), Vector3(5, 1, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_pywlo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5, 3, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGBox3D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5, 1, 7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_erb2d"]
+_data = {
+"Bounce": SubResource("Animation_hwn1m"),
+"RESET": SubResource("Animation_pywlo")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4584y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1y6ry"]
+
+[sub_resource type="Animation" id="Animation_8b3a8"]
+resource_name = "Close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.65, 5.1, 16.5), Vector3(1.65, 2.1, 16.5)]
+}
+
+[sub_resource type="Animation" id="Animation_2l357"]
+resource_name = "Open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.65, 2.1, 16.5), Vector3(1.65, 5.1, 16.5)]
+}
+
+[sub_resource type="Animation" id="Animation_bl71g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.65, 2.1, 16.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4gefg"]
+_data = {
+"Close": SubResource("Animation_8b3a8"),
+"Open": SubResource("Animation_2l357"),
+"RESET": SubResource("Animation_bl71g")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7vnok"]
+transparency = 1
+blend_mode = 1
+albedo_texture = ExtResource("13_qfv5v")
+emission_enabled = true
+emission_energy_multiplier = 0.75
+emission_texture = ExtResource("13_qfv5v")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_distance = 10.0
+distance_fade_mode = 1
+distance_fade_min_distance = 14.0
+distance_fade_max_distance = 0.0
+
+[sub_resource type="Animation" id="Animation_r1w5p"]
+resource_name = "Flicker"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.3, 0.0, 0.2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.7, 1.0, 0.8]
+}
+
+[sub_resource type="Animation" id="Animation_fypmr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OmniLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ymyhm"]
+_data = {
+"Flicker": SubResource("Animation_r1w5p"),
+"RESET": SubResource("Animation_fypmr")
+}
+
+[node name="TestScene" type="Node3D"]
+
+[node name="Basic FPS Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98643, 0)
+script = ExtResource("1_n4wlx")
+
+[node name="Head" parent="Basic FPS Player" instance=ExtResource("3_jgp0e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.412659, 0)
+
+[node name="InteractArea" type="Area3D" parent="Basic FPS Player/Head"]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Basic FPS Player/Head/InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98023e-08, 0, -0.5)
+shape = SubResource("BoxShape3D_0n8u0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Basic FPS Player"]
+shape = SubResource("CapsuleShape3D_u307w")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pu474")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 5)
+material_override = SubResource("StandardMaterial3D_8vjqw")
+use_collision = true
+size = Vector3(23, 1, 29)
+
+[node name="Floor2" type="CSGBox3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, -9)
+material_override = SubResource("StandardMaterial3D_6itj7")
+use_collision = true
+size = Vector3(19, 4, 1)
+
+[node name="Floor7" type="CSGBox3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 19)
+material_override = SubResource("StandardMaterial3D_6itj7")
+use_collision = true
+size = Vector3(19, 4, 1)
+
+[node name="Floor3" type="CSGBox3D" parent="World"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 2.5, 5.5)
+material_override = SubResource("StandardMaterial3D_6itj7")
+use_collision = true
+size = Vector3(28, 4, 1)
+
+[node name="Floor4" type="CSGBox3D" parent="World"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 2.5, -4.5)
+material_override = SubResource("StandardMaterial3D_6itj7")
+use_collision = true
+size = Vector3(8, 4, 1)
+
+[node name="Floor5" type="CSGBox3D" parent="World"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6, 2.5, -0.5)
+material_override = SubResource("StandardMaterial3D_6itj7")
+use_collision = true
+size = Vector3(8, 4, 1)
+
+[node name="Floor6" type="CSGBox3D" parent="World"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6, 2.5, 8.9)
+material_override = SubResource("StandardMaterial3D_6itj7")
+use_collision = true
+size = Vector3(8, 4, 1)
+
+[node name="TouchExample" type="Node3D" parent="."]
+
+[node name="BoxExample" type="CSGBox3D" parent="TouchExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2, -6)
+material_override = SubResource("StandardMaterial3D_j88fx")
+use_collision = true
+
+[node name="Label3D" type="Label3D" parent="TouchExample/BoxExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 2
+text = "Touch Interact example"
+
+[node name="ZoneShow" type="CSGBox3D" parent="TouchExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, -3.5)
+material_override = SubResource("StandardMaterial3D_t8fuy")
+size = Vector3(8, 3, 2)
+
+[node name="TouchInteraction" parent="TouchExample/ZoneShow" instance=ExtResource("6_yohpv")]
+Delay_enter = true
+Display_mode = true
+Display_text = "Box hidden on entry."
+Display_text_fade_time = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TouchExample/ZoneShow/TouchInteraction"]
+shape = SubResource("BoxShape3D_keeo7")
+
+[node name="ButtonToggleExample" type="Node3D" parent="."]
+
+[node name="Button" type="CSGBox3D" parent="ButtonToggleExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -6)
+material_override = SubResource("StandardMaterial3D_ho1kl")
+
+[node name="Label3D" type="Label3D" parent="ButtonToggleExample/Button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 2
+text = "Button Toggle Interact
+Example"
+
+[node name="ButtonToggleInteract" parent="ButtonToggleExample/Button" instance=ExtResource("8_i08dp")]
+Pop_out_delay = 1.0
+Display_mode = true
+Display_text = "Press E to Open Door."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonToggleExample/Button/ButtonToggleInteract"]
+shape = SubResource("BoxShape3D_dbj5l")
+
+[node name="Door" type="CSGBox3D" parent="ButtonToggleExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.65, 2.1, -3.5)
+material_override = SubResource("StandardMaterial3D_uhl2q")
+use_collision = true
+size = Vector3(0.1, 3, 2)
+
+[node name="DoorFrame" type="CSGBox3D" parent="ButtonToggleExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.65, 2.1, -3.5)
+material_override = SubResource("StandardMaterial3D_27k1n")
+use_collision = true
+size = Vector3(0.3, 3.2, 2.4)
+
+[node name="DoorBool" type="CSGBox3D" parent="ButtonToggleExample/DoorFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0999999, 0)
+operation = 2
+size = Vector3(0.3, 3, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ButtonToggleExample"]
+libraries = {
+"": SubResource("AnimationLibrary_p0txa")
+}
+
+[node name="ButtonTimedExample" type="Node3D" parent="."]
+
+[node name="Button" type="CSGBox3D" parent="ButtonTimedExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 2)
+material_override = SubResource("StandardMaterial3D_ho1kl")
+
+[node name="Label3D" type="Label3D" parent="ButtonTimedExample/Button"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 2
+text = "Button Timed Interact
+Example"
+
+[node name="ButtonTimed" parent="ButtonTimedExample/Button" instance=ExtResource("3_2eylr")]
+use_amount = 1
+Display_mode = true
+Enter_text = "Press E to activate for 5 seconds"
+Description_text = "Button was pressed"
+Description_text_fade_time = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonTimedExample/Button/ButtonTimed"]
+shape = SubResource("BoxShape3D_47fqx")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="ButtonTimedExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, 5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="ButtonTimedExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 7)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ButtonTimedExample"]
+libraries = {
+"": SubResource("AnimationLibrary_erb2d")
+}
+
+[node name="Extra" type="Node3D" parent="."]
+
+[node name="Key" type="CSGBox3D" parent="Extra"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 11)
+
+[node name="Label3D" type="Label3D" parent="Extra/Key"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 2
+text = "Key example"
+
+[node name="ButtonToggleInteract" parent="Extra/Key" instance=ExtResource("8_i08dp")]
+Use_amount = 1
+Display_mode = true
+Display_text = "Press E to pick up key"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Extra/Key/ButtonToggleInteract"]
+shape = SubResource("BoxShape3D_4584y")
+
+[node name="DoorButton" type="CSGBox3D" parent="Extra"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 15)
+
+[node name="Label3D" type="Label3D" parent="Extra/DoorButton"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 2
+text = "Locked door example"
+
+[node name="ButtonToggleInteract" parent="Extra/DoorButton" instance=ExtResource("8_i08dp")]
+Display_mode = true
+Display_text = "This button is locked"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Extra/DoorButton/ButtonToggleInteract"]
+shape = SubResource("BoxShape3D_1y6ry")
+
+[node name="ButtonToggleInteract2" parent="Extra/DoorButton" instance=ExtResource("8_i08dp")]
+_active = false
+Display_mode = true
+Display_text = "Press E to Use"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Extra/DoorButton/ButtonToggleInteract2"]
+shape = SubResource("BoxShape3D_1y6ry")
+
+[node name="Door" type="CSGBox3D" parent="Extra"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.65, 2.1, 16.5)
+material_override = SubResource("StandardMaterial3D_uhl2q")
+use_collision = true
+size = Vector3(0.1, 3, 2)
+
+[node name="DoorFrame" type="CSGBox3D" parent="Extra"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.65, 2.1, 16.5)
+material_override = SubResource("StandardMaterial3D_27k1n")
+use_collision = true
+size = Vector3(0.3, 3.2, 2.4)
+
+[node name="DoorBool" type="CSGBox3D" parent="Extra/DoorFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0999999, 0)
+operation = 2
+size = Vector3(0.3, 3, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Extra"]
+libraries = {
+"": SubResource("AnimationLibrary_4gefg")
+}
+
+[node name="WallCandle" parent="." instance=ExtResource("12_hyes1")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -9.50504, 2.64075, 18.4763)
+
+[node name="Sprite3D" type="Sprite3D" parent="WallCandle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.592585, 0.638619, -0.011919)
+material_override = SubResource("StandardMaterial3D_7vnok")
+billboard = 1
+double_sided = false
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("13_qfv5v")
+region_rect = Rect2(0.35, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WallCandle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.583273, 0.634102, 0)
+light_color = Color(1, 0.796078, 0.537255, 1)
+shadow_enabled = true
+shadow_blur = 8.692
+omni_range = 10.578
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WallCandle"]
+libraries = {
+"": SubResource("AnimationLibrary_ymyhm")
+}
+autoplay = "Flicker"
+speed_scale = 0.75
+
+[connection signal="Entered" from="TouchExample/ZoneShow/TouchInteraction" to="TouchExample/BoxExample" method="hide"]
+[connection signal="Exited" from="TouchExample/ZoneShow/TouchInteraction" to="TouchExample/BoxExample" method="show"]
+[connection signal="Off" from="ButtonToggleExample/Button/ButtonToggleInteract" to="ButtonToggleExample/AnimationPlayer" method="play" binds= [&"Close"]]
+[connection signal="On" from="ButtonToggleExample/Button/ButtonToggleInteract" to="ButtonToggleExample/AnimationPlayer" method="play" binds= [&"Open"]]
+[connection signal="Depressed" from="ButtonTimedExample/Button/ButtonTimed" to="ButtonTimedExample/AnimationPlayer" method="pause"]
+[connection signal="Pressed" from="ButtonTimedExample/Button/ButtonTimed" to="ButtonTimedExample/AnimationPlayer" method="play" binds= [&"Bounce"]]
+[connection signal="On" from="Extra/Key/ButtonToggleInteract" to="Extra/Key" method="queue_free"]
+[connection signal="On" from="Extra/Key/ButtonToggleInteract" to="Extra/DoorButton/ButtonToggleInteract" method="deactivate"]
+[connection signal="On" from="Extra/Key/ButtonToggleInteract" to="Extra/DoorButton/ButtonToggleInteract2" method="activate"]
+[connection signal="Off" from="Extra/DoorButton/ButtonToggleInteract2" to="Extra/AnimationPlayer" method="play" binds= [&"Close"]]
+[connection signal="On" from="Extra/DoorButton/ButtonToggleInteract2" to="Extra/AnimationPlayer" method="play" binds= [&"Open"]]
